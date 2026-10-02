@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>QuickBite API Documentation</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--navy:#0b1b3f;--blue:#4f46e5;--teal:#0d9488;--bg:#f7f8fb;--card:#fff;--tx:#1b2438;--mu:#5b6478;--bd:#e2e6ef;--code:#0f172a;--ok:#16a34a;--wn:#d97706;--er:#dc2626}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1020;--card:#121a30;--tx:#e6eaf5;--mu:#97a1ba;--bd:#26304d;--navy:#c7d2fe;--code:#050914}}
+:root[data-theme="dark"]{--bg:#0b1020;--card:#121a30;--tx:#e6eaf5;--mu:#97a1ba;--bd:#26304d;--navy:#c7d2fe;--code:#050914}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{display:flex;max-width:1180px;margin:auto}
+nav{width:240px;flex:none;position:sticky;top:0;align-self:flex-start;height:100vh;overflow:auto;padding:28px 18px;border-right:1px solid var(--bd);font-size:14px}
+nav b{display:block;color:var(--navy);font-size:17px;margin-bottom:14px}nav small{display:block;margin:14px 0 4px;color:var(--mu);text-transform:uppercase;letter-spacing:.08em;font-size:11px}
+nav a{display:block;padding:3px 0;color:var(--mu);text-decoration:none}nav a:hover{color:var(--blue)}
+main{flex:1;min-width:0;padding:0 36px 80px}
+.hero{margin:0 -36px 36px;padding:56px 36px;background:linear-gradient(135deg,#0b1b3f,#3730a3);color:#fff}
+.hero h1{font-size:44px;margin:0 0 6px;letter-spacing:-.02em}.hero h2{font-weight:500;font-size:22px;margin:0 0 12px;color:#99f6e4}.hero p{max-width:620px;color:#c7d2fe}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}.cta a{padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:600}
+.cta .p{background:#14b8a6;color:#04201d}.cta .s{border:1px solid #818cf8;color:#fff}
+.badge{display:inline-block;font-size:12px;border:1px solid #818cf8;border-radius:99px;padding:2px 10px;margin-bottom:14px;color:#c7d2fe}
+section{padding-top:36px}h2.t{font-size:28px;color:var(--navy);margin:0 0 8px;letter-spacing:-.01em}h2.t span{color:var(--teal);font-size:15px;font-weight:700;margin-right:10px;font-family:ui-monospace,monospace}
+h3{margin:26px 0 6px;font-size:19px;color:var(--navy)}p{margin:8px 0}
+pre{background:var(--code);color:#e2e8f0;padding:14px 16px;border-radius:10px;overflow-x:auto;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;margin:10px 0}
+code{font-family:ui-monospace,Menlo,monospace;font-size:.9em;background:rgba(79,70,229,.1);padding:1px 6px;border-radius:5px}pre code{background:none;padding:0}
+pre.mermaid{background:var(--card);border:1px solid var(--bd);color:var(--tx);text-align:center;padding:18px}
+.tw{overflow-x:auto;margin:12px 0;border:1px solid var(--bd);border-radius:10px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:14px}th{background:var(--navy);color:#fff;text-align:left;padding:9px 12px;white-space:nowrap}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) th{color:#0b1020}}:root[data-theme="dark"] th{color:#0b1020}
+td{padding:9px 12px;border-top:1px solid var(--bd);vertical-align:top}
+.note{border-left:4px solid var(--teal);background:rgba(13,148,136,.09);padding:10px 14px;border-radius:0 8px 8px 0;margin:12px 0}
+.note.w{border-color:var(--wn);background:rgba(217,119,6,.1)}.note.e{border-color:var(--er);background:rgba(220,38,38,.08)}.note b:first-child{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.m{display:inline-block;font:700 12px ui-monospace,monospace;padding:2px 8px;border-radius:5px;color:#fff;margin-right:6px}.G{background:var(--ok)}.P{background:var(--blue)}.D{background:var(--er)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:12px 0}.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px}
+.step{border:1px solid var(--bd);background:var(--card);border-radius:12px;padding:6px 18px 12px;margin:14px 0}.step h3{margin-top:12px}
+details{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:10px 14px;margin:8px 0}summary{cursor:pointer;font-weight:600}
+.tl{border-left:3px solid var(--blue);padding-left:16px;margin:12px 0}.tl h3{margin-top:0}
+.demo{font-size:13px;color:var(--mu)}
+@media(max-width:860px){nav{display:none}main{padding:0 18px 60px}.hero{margin:0 -18px 28px;padding:40px 18px}.hero h1{font-size:34px}}
+</style></head><body><div class="wrap">
+<nav><b>QuickBite API</b><small>Get Started</small><a href="#s1">01 Introduction</a><a href="#s2">02 Quick Start</a><a href="#s3">03 Authentication</a><a href="#s4">04 API Concepts</a><small>Guides</small><a href="#s5">05 Food Discovery</a><a href="#s6">06 Cart &amp; Orders</a><a href="#s7">07 Payments</a><a href="#s8">08 Webhooks</a><small>Resources</small><a href="#s9">09 Error Handling</a><a href="#s10">10 Edge Cases</a><a href="#s11">11 Rate Limits</a><a href="#s12">12 Versioning</a><a href="#s13">13 FAQ</a><a href="#s14">14 Changelog</a></nav>
+<main>
+<header class="hero"><span class="badge">Portfolio / demo API &middot; fictional product</span>
+<h1>QuickBite API</h1><h2>Build the food-ordering experience your users expect.</h2>
+<p>QuickBite API gives developers the building blocks to discover restaurants, manage carts, place orders, process payments, and track deliveries.</p>
+<pre class="mermaid" style="background:transparent;border:0;color:#fff">flowchart LR
+U[User] --> R[Restaurant] --> C[Cart] --> O[Order] --> P[Payment] --> D[Delivery]</pre>
+<div class="cta"><a class="p" href="#s2">Get Started</a><a class="s" href="#s5">API Reference</a></div></header>
+
+<section id="s1"><h2 class="t"><span>01</span>Introduction</h2>
+<p>A user opens a food-delivery app, finds a restaurant, adds a meal to their cart, pays, and tracks the order. Several API interactions power that experience behind the scenes.</p>
+<div class="grid"><div class="card"><b>Discover</b><br>Search restaurants and read menus.</div><div class="card"><b>Order</b><br>Build carts and place orders.</div><div class="card"><b>Pay</b><br>Create and retrieve payments.</div><div class="card"><b>Track</b><br>Poll status or receive webhooks.</div></div>
+<p><b>Who it's for:</b> backend and mobile developers building ordering experiences. Base URL: <code>https://api.quickbite-demo.example/v1</code></p>
+<pre class="mermaid">flowchart TB
+A[QuickBite API] --> RS[Restaurant Service]
+A --> OS[Order Service]
+A --> PS[Payment Service]
+RS --> DB[(Database / external services)]
+OS --> DB
+PS --> DB
+DB -->|events| W[Webhooks]
+W -->|HTTPS POST| CA[Client app]</pre>
+<p class="demo">Conceptual overview only. It does not describe a real backend.</p>
+<h3>Integration journey</h3>
+<pre class="mermaid">flowchart TB
+A[Authenticate] --> B[Find restaurant] --> C[View menu] --> D[Create cart] --> E[Add items] --> F[Place order] --> G[Process payment] --> H[Track order] --> I[Receive webhook]</pre>
+<p>You authenticate once, then move from discovery to cart to order. Payment is part of order placement. After that, track the order by polling or, preferably, by webhook.</p></section>
+
+<section id="s2"><h2 class="t"><span>02</span>Quick Start</h2><p>Make your first API request in 5 minutes. Prerequisite: <code>curl</code>.</p>
+<div class="step"><h3>Step 1 &mdash; Get your API key</h3><p>Open the demo dashboard and copy a test key. Test keys start with <code>qb_test_</code>.</p><pre>export QB_KEY="qb_test_51Hx9demo"</pre><div class="note"><b>Note</b>Never put keys in client-side code.</div></div>
+<div class="step"><h3>Step 2 &mdash; Authenticate</h3><p>Send the key as a Bearer token.</p><pre>curl https://api.quickbite-demo.example/v1/restaurants?limit=1 \
+  -H "Authorization: Bearer $QB_KEY"</pre><p>A <code>200 OK</code> confirms the key works. A <code>401</code> means <code>INVALID_API_KEY</code>.</p></div>
+<div class="step"><h3>Step 3 &mdash; Find a restaurant</h3><pre>curl "https://api.quickbite-demo.example/v1/search?q=pizza&amp;city=Bhopal" -H "Authorization: Bearer $QB_KEY"</pre><pre>{"data":[{"id":"rst_8f2a","name":"Napoli Slice","cuisine":"pizza","is_open":true}],"has_more":false}</pre><div class="note"><b>Note</b>Check <code>is_open</code> before building a cart.</div></div>
+<div class="step"><h3>Step 4 &mdash; View its menu</h3><pre>curl https://api.quickbite-demo.example/v1/restaurants/rst_8f2a/menu -H "Authorization: Bearer $QB_KEY"</pre><pre>{"restaurant_id":"rst_8f2a","items":[{"id":"itm_margherita","name":"Margherita Pizza","price":34900,"currency":"INR","available":true}]}</pre><div class="note"><b>Note</b>Prices are integers in the smallest currency unit (paise): 34900 = INR 349.00.</div></div>
+<div class="step"><h3>Step 5 &mdash; Create a cart</h3><pre>curl -X POST https://api.quickbite-demo.example/v1/carts -H "Authorization: Bearer $QB_KEY" \
+  -H "Content-Type: application/json" -d '{"restaurant_id":"rst_8f2a"}'</pre><pre>{"id":"cart_41c7","restaurant_id":"rst_8f2a","items":[],"subtotal":0}</pre>
+<pre>curl -X POST https://api.quickbite-demo.example/v1/carts/cart_41c7/items -H "Authorization: Bearer $QB_KEY" \
+  -H "Content-Type: application/json" -d '{"menu_item_id":"itm_margherita","quantity":2}'</pre><div class="note"><b>Note</b>A cart belongs to one restaurant. Adding an item from another restaurant returns <code>409 CONFLICT</code>.</div></div>
+<div class="step"><h3>Step 6 &mdash; Place an order</h3><pre>curl -X POST https://api.quickbite-demo.example/v1/orders -H "Authorization: Bearer $QB_KEY" \
+  -H "Content-Type: application/json" -H "Idempotency-Key: 7c1e-demo-0001" \
+  -d '{"cart_id":"cart_41c7","payment_method":"pm_test_card_visa","delivery_address":{"line1":"12 MP Nagar","city":"Bhopal","postal_code":"462011"}}'</pre><pre>{"id":"ord_9d3b","status":"created","payment_status":"succeeded","total":69800,"currency":"INR","estimated_delivery_time":35}</pre><div class="note"><b>Note</b>Save <code>id</code>. You need it to track the order. <code>estimated_delivery_time</code> is in minutes.</div></div>
+<div class="step"><h3>Step 7 &mdash; Check the order</h3><pre>curl https://api.quickbite-demo.example/v1/orders/ord_9d3b -H "Authorization: Bearer $QB_KEY"</pre><pre>{"id":"ord_9d3b","status":"confirmed","payment_status":"succeeded","estimated_delivery_time":35}</pre><div class="note"><b>Note</b>Prefer <a href="#s8">webhooks</a> over polling in production.</div></div></section>
+
+<section id="s3"><h2 class="t"><span>03</span>Authentication</h2><p>Every request needs an API key in the <code>Authorization</code> header.</p>
+<div class="tw"><table><tr><th>Key type</th><th>Prefix</th><th>Use</th></tr><tr><td>Test</td><td><code>qb_test_</code></td><td>Sandbox data, no real payments</td></tr><tr><td>Live</td><td><code>qb_live_</code></td><td>Production (not available in this demo)</td></tr></table></div>
+<pre>Authorization: Bearer qb_test_51Hx9demo</pre></section>
+
+<section id="s4"><h2 class="t"><span>04</span>API Concepts</h2>
+<div class="tw"><table><tr><th>Concept</th><th>In QuickBite API</th></tr>
+<tr><td>Base URL</td><td><code>https://api.quickbite-demo.example/v1</code></td></tr>
+<tr><td>Methods</td><td><code>GET</code> reads, <code>POST</code> creates or triggers actions, <code>DELETE</code> removes</td></tr>
+<tr><td>JSON</td><td>Requests and responses use <code>application/json</code></td></tr>
+<tr><td>Path parameters</td><td>Identify one resource: <code>/orders/{order_id}</code></td></tr>
+<tr><td>Query parameters</td><td>Filter lists: <code>?cuisine=pizza&amp;limit=20</code></td></tr>
+<tr><td>Headers</td><td><code>Authorization</code>, <code>Content-Type</code>, <code>Idempotency-Key</code> (on <code>POST /orders</code> and <code>POST /payments</code>)</td></tr>
+<tr><td>Pagination</td><td>Cursor-based: <code>limit</code> (max 50) and <code>starting_after</code>; responses include <code>has_more</code></td></tr>
+<tr><td>Errors</td><td>Standard envelope, see <a href="#s9">Error Handling</a></td></tr></table></div>
+<h3>Example data model</h3>
+<pre class="mermaid">erDiagram
+USER ||--o{ ORDER : creates
+ORDER ||--|{ ORDER_ITEM : contains
+RESTAURANT ||--o{ ORDER : receives
+ORDER ||--o| PAYMENT : has
+USER{string id}
+RESTAURANT{string id}
+ORDER{string id string status int total}
+ORDER_ITEM{string menu_item_id int quantity}
+PAYMENT{string id string status}</pre></section>
+
+<section id="s5"><h2 class="t"><span>05</span>Food Discovery &amp; Endpoint Reference</h2>
+<div class="tw"><table><tr><th>Workflow</th><th>Endpoint</th><th>Purpose</th><th>Auth</th></tr>
+<tr><td rowspan="4">Discovery</td><td><span class="m G">GET</span><code>/restaurants</code></td><td>List restaurants</td><td>Required</td></tr>
+<tr><td><span class="m G">GET</span><code>/restaurants/{restaurant_id}</code></td><td>Restaurant details</td><td>Required</td></tr>
+<tr><td><span class="m G">GET</span><code>/restaurants/{restaurant_id}/menu</code></td><td>Menu items</td><td>Required</td></tr>
+<tr><td><span class="m G">GET</span><code>/search</code></td><td>Search by <code>q</code>, <code>city</code></td><td>Required</td></tr>
+<tr><td rowspan="4">Cart</td><td><span class="m P">POST</span><code>/carts</code></td><td>Create cart</td><td>Required</td></tr>
+<tr><td><span class="m G">GET</span><code>/carts/{cart_id}</code></td><td>Retrieve cart</td><td>Required</td></tr>
+<tr><td><span class="m P">POST</span><code>/carts/{cart_id}/items</code></td><td>Add item</td><td>Required</td></tr>
+<tr><td><span class="m D">DELETE</span><code>/carts/{cart_id}/items/{item_id}</code></td><td>Remove item</td><td>Required</td></tr>
+<tr><td rowspan="3">Orders</td><td><span class="m P">POST</span><code>/orders</code></td><td>Place order and pay</td><td>Required</td></tr>
+<tr><td><span class="m G">GET</span><code>/orders/{order_id}</code></td><td>Retrieve order</td><td>Required</td></tr>
+<tr><td><span class="m P">POST</span><code>/orders/{order_id}/cancel</code></td><td>Cancel order</td><td>Required</td></tr>
+<tr><td rowspan="2">Payments</td><td><span class="m P">POST</span><code>/payments</code></td><td>Retry payment on an order</td><td>Required</td></tr>
+<tr><td><span class="m G">GET</span><code>/payments/{payment_id}</code></td><td>Retrieve payment</td><td>Required</td></tr></table></div>
+<h3>List restaurants parameters</h3>
+<div class="tw"><table><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th><th>Example</th></tr>
+<tr><td><code>cuisine</code></td><td>string</td><td>No</td><td>Filter by cuisine</td><td><code>pizza</code></td></tr><tr><td><code>limit</code></td><td>integer</td><td>No</td><td>1&ndash;50, default 20</td><td><code>10</code></td></tr><tr><td><code>starting_after</code></td><td>string</td><td>No</td><td>Cursor from previous page</td><td><code>rst_8f2a</code></td></tr></table></div></section>
+
+<section id="s6"><h2 class="t"><span>06</span>Cart &amp; Orders</h2>
+<h3>Place an order</h3><p>Creates an order from a cart and charges the payment method in one request.</p>
+<p><b>When to use it:</b> the user taps &ldquo;Place order&rdquo; at checkout.</p>
+<pre>POST /v1/orders</pre><p><b>Authentication:</b> required (Bearer). <b>Headers:</b> <code>Idempotency-Key</code> recommended.</p>
+<div class="tw"><table><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th><th>Example</th></tr>
+<tr><td><code>cart_id</code></td><td>string</td><td>Yes</td><td>Cart to convert</td><td><code>cart_41c7</code></td></tr>
+<tr><td><code>payment_method</code></td><td>string</td><td>Yes</td><td>Tokenized payment method</td><td><code>pm_test_card_visa</code></td></tr>
+<tr><td><code>delivery_address</code></td><td>object</td><td>Yes</td><td><code>line1</code>, <code>city</code>, <code>postal_code</code></td><td>See Quick Start</td></tr></table></div>
+<h4>Response <code>201 Created</code></h4>
+<pre>{"id":"ord_9d3b","status":"created","restaurant_id":"rst_8f2a",
+ "items":[{"menu_item_id":"itm_margherita","quantity":2,"unit_price":34900}],
+ "total":69800,"currency":"INR","payment_id":"pay_77e1","payment_status":"succeeded",
+ "estimated_delivery_time":35,"created_at":"2026-09-18T12:30:00Z"}</pre>
+<div class="tw"><table><tr><th>Field</th><th>Type</th><th>Description</th></tr>
+<tr><td><code>id</code></td><td>string</td><td>Order ID</td></tr><tr><td><code>status</code></td><td>string</td><td>See lifecycle below</td></tr>
+<tr><td><code>total</code></td><td>integer</td><td>Total in smallest currency unit</td></tr><tr><td><code>payment_status</code></td><td>string</td><td><code>pending</code>, <code>succeeded</code>, or <code>failed</code></td></tr>
+<tr><td><code>estimated_delivery_time</code></td><td>integer</td><td>Estimated minutes until delivery</td></tr></table></div>
+<div class="tw"><table><tr><th>Code</th><th>Meaning</th><th>When it occurs</th></tr><tr><td>201</td><td>Created</td><td>Order placed</td></tr><tr><td>400</td><td>INVALID_REQUEST</td><td>Missing or malformed field</td></tr><tr><td>401</td><td>INVALID_API_KEY</td><td>Bad key</td></tr><tr><td>404</td><td>NOT_FOUND</td><td>Cart does not exist</td></tr><tr><td>409</td><td>CONFLICT</td><td>Cart already ordered, or restaurant closed</td></tr><tr><td>429</td><td>RATE_LIMITED</td><td>Too many requests</td></tr></table></div>
+<pre>{"error":{"code":"CONFLICT","message":"Restaurant rst_8f2a is no longer accepting orders.","request_id":"req_c91f"}}</pre>
+<div class="note"><b>Developer note</b>Save the <code>id</code> returned by this request. You need it to retrieve the order status later.</div>
+<h3>Sequence: place order</h3>
+<pre class="mermaid">sequenceDiagram
+participant C as Client
+participant A as QuickBite API
+participant CS as Cart Service
+participant OS as Order Service
+participant PG as Payment Gateway
+C->>A: POST /orders
+A->>CS: Validate cart
+CS-->>A: Cart valid
+A->>OS: Create order
+OS->>PG: Create payment
+PG-->>OS: Payment successful
+OS-->>A: Order confirmed
+A-->>C: 201 Created</pre>
+<h3>Cancel an order</h3><p><span class="m P">POST</span><code>/orders/{order_id}/cancel</code> works while status is <code>created</code>, <code>confirmed</code>, or <code>preparing</code>. Otherwise it returns <code>409 CONFLICT</code>. Paid orders are refunded.</p>
+<h3>Order lifecycle</h3>
+<pre class="mermaid">stateDiagram-v2
+[*] --> created
+created --> confirmed
+confirmed --> preparing
+preparing --> out_for_delivery
+out_for_delivery --> delivered
+created --> cancelled
+confirmed --> cancelled
+preparing --> cancelled
+delivered --> [*]
+cancelled --> [*]</pre>
+<div class="tw"><table><tr><th>Status</th><th>Meaning</th><th>Developer action</th></tr>
+<tr><td><code>created</code></td><td>Order created</td><td>Wait for confirmation</td></tr><tr><td><code>confirmed</code></td><td>Restaurant accepted</td><td>Display confirmation</td></tr><tr><td><code>preparing</code></td><td>Food in preparation</td><td>Show progress</td></tr><tr><td><code>out_for_delivery</code></td><td>On the way</td><td>Show delivery status</td></tr><tr><td><code>delivered</code></td><td>Completed</td><td>Mark complete</td></tr><tr><td><code>cancelled</code></td><td>Cancelled</td><td>Inform user</td></tr></table></div>
+<p>If payment fails, <code>payment_status</code> is <code>failed</code> and the order moves to <code>cancelled</code> with <code>cancel_reason: "payment_failed"</code>.</p></section>
+
+<section id="s7"><h2 class="t"><span>07</span>Payments</h2>
+<p>Payments are normally created by <code>POST /orders</code>. Use <code>POST /payments</code> to retry after a failure, with an <code>order_id</code> and <code>payment_method</code>.</p>
+<pre>{"id":"pay_77e1","order_id":"ord_9d3b","amount":69800,"currency":"INR","status":"succeeded"}</pre>
+<div class="tw"><table><tr><th>Payment status</th><th>Meaning</th></tr><tr><td><code>pending</code></td><td>Awaiting gateway result</td></tr><tr><td><code>succeeded</code></td><td>Funds captured</td></tr><tr><td><code>failed</code></td><td>Declined or errored</td></tr></table></div></section>
+
+<section id="s8"><h2 class="t"><span>08</span>Webhooks</h2>
+<div class="note"><b>Why webhooks</b>Instead of repeatedly asking the API whether an order has changed, your application receives an event when something happens.</div>
+<pre class="mermaid">flowchart LR
+A[Order status changes] --> B[QuickBite detects event] --> C[Webhook sent] --> D[Your server receives event] --> E[Your app updates UI]</pre>
+<pre class="mermaid">sequenceDiagram
+participant PG as Payment Gateway
+participant A as QuickBite API
+participant D as Developer Application
+PG->>A: Payment result
+A->>A: Update payment and order
+A->>D: POST webhook URL (payment.completed)
+D-->>A: 200 OK</pre>
+<div class="tw"><table><tr><th>Event</th><th>Triggered when</th></tr><tr><td><code>order.created</code></td><td>Order placed</td></tr><tr><td><code>order.confirmed</code></td><td>Restaurant accepts</td></tr><tr><td><code>order.status.updated</code></td><td>Status changes after confirmation</td></tr><tr><td><code>payment.completed</code></td><td>Payment succeeds</td></tr><tr><td><code>payment.failed</code></td><td>Payment fails</td></tr></table></div>
+<pre>{"id":"evt_5b20","type":"order.status.updated","created_at":"2026-09-18T12:48:00Z",
+ "data":{"order_id":"ord_9d3b","status":"out_for_delivery","estimated_delivery_time":12}}</pre>
+<h3>Setup and handling</h3>
+<div class="tw"><table><tr><th>Topic</th><th>Behavior</th></tr>
+<tr><td>Webhook URL</td><td>Public HTTPS endpoint registered in the dashboard</td></tr>
+<tr><td>Signature</td><td>Header <code>QuickBite-Signature</code> holds an HMAC-SHA256 of the raw body, signed with your webhook secret. Verify before processing.</td></tr>
+<tr><td>Retries</td><td>Any non-2xx response or timeout (10 s) is retried up to 5 times with exponential backoff</td></tr>
+<tr><td>Idempotency</td><td>Store <code>id</code> of each event. Ignore duplicates.</td></tr>
+<tr><td>Failed delivery</td><td>After the final retry, the event stays visible in the dashboard</td></tr></table></div></section>
+
+<section id="s9"><h2 class="t"><span>09</span>Error Handling</h2>
+<pre>{"error":{"code":"INVALID_REQUEST","message":"quantity must be at least 1.","param":"quantity","request_id":"req_a12c"}}</pre>
+<div class="tw"><table><tr><th>HTTP</th><th>Error code</th><th>Meaning</th><th>What to do</th></tr>
+<tr><td>400</td><td><code>INVALID_REQUEST</code></td><td>Malformed request</td><td>Check request body</td></tr><tr><td>401</td><td><code>INVALID_API_KEY</code></td><td>Authentication failed</td><td>Check API key</td></tr><tr><td>404</td><td><code>NOT_FOUND</code></td><td>Resource missing</td><td>Verify ID</td></tr><tr><td>409</td><td><code>CONFLICT</code></td><td>State conflict</td><td>Check current state</td></tr><tr><td>429</td><td><code>RATE_LIMITED</code></td><td>Too many requests</td><td>Retry later</td></tr></table></div></section>
+
+<section id="s10"><h2 class="t"><span>10</span>Edge Cases: Things That Can Go Wrong</h2>
+<h3>The restaurant became unavailable</h3><p><code>POST /orders</code> returns <code>409 CONFLICT</code>. Ask the user to choose another restaurant. The cart stays valid.</p>
+<h3>Payment succeeded but the response never arrived</h3><p>Do not retry blindly. Fetch <code>GET /orders/{order_id}</code> if you have the ID. Otherwise resend the original request with the <strong>same</strong> <code>Idempotency-Key</code>. QuickBite returns the original order.</p>
+<h3>The same order was submitted twice</h3><p>Send a unique <code>Idempotency-Key</code> per checkout attempt. Repeats with the same key within 24 hours return the first result and create no new order.</p>
+<h3>A webhook was not received</h3>
+<div class="note w"><b>Checklist</b>1. Is the URL public HTTPS? 2. Does your server return 2xx within 10 s? 3. Does signature verification use the raw body? 4. Check delivery logs in the dashboard. 5. Fall back to <code>GET /orders/{order_id}</code>.</div>
+<h3>The API returns 429</h3><p>Wait for <code>Retry-After</code> seconds. See <a href="#s11">Rate Limits</a>.</p></section>
+
+<section id="s11"><h2 class="t"><span>11</span>Rate Limits</h2>
+<div class="tw"><table><tr><th>Key type</th><th>Limit</th></tr><tr><td>Test</td><td>60 requests per minute</td></tr><tr><td>Live (demo value)</td><td>600 requests per minute</td></tr></table></div>
+<pre>X-RateLimit-Limit: 60
+X-RateLimit-Remaining: 0
+X-RateLimit-Reset: 1790000000
+Retry-After: 12</pre>
+<div class="note w"><b>Retry strategy</b>On <code>429</code>, wait <code>Retry-After</code> seconds, then retry with exponential backoff (1 s, 2 s, 4 s) and random jitter. Stop after 5 attempts.</div></section>
+
+<section id="s12"><h2 class="t"><span>12</span>API Versioning</h2>
+<p>The version is part of the path: <code>/v1/orders</code>, <code>/v2/orders</code>. Versions coexist during a migration window.</p>
+<pre class="mermaid">gantt
+dateFormat YYYY-MM
+axisFormat %b %Y
+section v1
+Supported :2026-01, 2027-06
+Deprecated, sunset :2027-06, 2027-12
+section v2 (illustrative)
+Preview :2027-03, 2027-06
+Generally available :2027-06, 2028-01</pre>
+<div class="tw"><table><tr><th>Non-breaking (same version)</th><th>Breaking (new version)</th></tr><tr><td>New endpoints, optional parameters, new response fields, new webhook events</td><td>Removing or renaming fields, changing types, new required parameters, changing status meanings</td></tr></table></div></section>
+
+<section id="s13"><h2 class="t"><span>13</span>FAQ</h2>
+<details><summary>How do I authenticate?</summary>Send <code>Authorization: Bearer &lt;key&gt;</code> on every request.</details>
+<details><summary>How do I find a restaurant?</summary>Use <code>GET /search</code> or <code>GET /restaurants</code>.</details>
+<details><summary>Can I cancel an order after payment?</summary>Yes, until status is <code>out_for_delivery</code>. Payment is refunded.</details>
+<details><summary>What if payment succeeds but the request times out?</summary>Retry with the same <code>Idempotency-Key</code>, or fetch the order.</details>
+<details><summary>How do I prevent duplicate orders?</summary>Always send <code>Idempotency-Key</code> on <code>POST /orders</code>.</details>
+<details><summary>How do I test webhooks?</summary>Use a test key and the dashboard's &ldquo;Send test event&rdquo; button.</details>
+<details><summary>How do I handle rate limits?</summary>Honor <code>Retry-After</code> and use backoff.</details>
+<details><summary>How long are API keys valid?</summary>Until revoked. Rotate them regularly.</details></section>
+
+<section id="s14"><h2 class="t"><span>14</span>Changelog</h2>
+<div class="tl"><h3>v1.2 &mdash; September 2026</h3><p><b>Added:</b> order cancellation endpoint, webhook support, <code>estimated_delivery_time</code>.<br><b>Changed:</b> improved order status responses.<br><b>Fixed:</b> improved validation errors.</p></div>
+<div class="tl"><h3>v1.1 &mdash; June 2026</h3><p><b>Added:</b> <code>/search</code> endpoint, cursor pagination.</p></div>
+<div class="tl"><h3>v1.0 &mdash; March 2026</h3><p>Initial release: restaurants, carts, orders, payments.</p></div>
+<p class="demo">QuickBite is a fictional API created for a technical writing portfolio. All data and behavior are illustrative.</p></section>
+</main></div><script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"default"});</script>
+</body></html>
